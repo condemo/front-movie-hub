@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+import MediaCard from '@/components/MediaCard.vue';
 </script>
 
 <template>
   <div>
-    <h1 class="text-4xl">Main View</h1>
+    <MediaCard />
   </div>
 </template>
