@@ -38,20 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import type { MediaResume } from '@/types/media';
-import { reactive } from 'vue';
+import { useMediaStore } from '@/store/media';
+import { storeToRefs } from 'pinia';
 
+// TODO: borrar mockup
+const mediaStore = useMediaStore()
+const { mediaMockup: media } = storeToRefs(mediaStore)
 
-// TODO: Borrar mockup
-const media: MediaResume = reactive({
-  Id: 1,
-  Type: "movie",
-  Title: "Distict 9",
-  Genres: "Acción,Drama,Ciencia Ficción",
-  Description: "ldasdsadasddaskhdasdhjaskdjhasjkdhasdasjkdhasjdashjdasjs",
-  Image: "imagen",
-  Fav: false,
-  Viewed: false
-})
 
 </script>
