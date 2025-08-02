@@ -1,21 +1,21 @@
 export type MediaResume = {
-  Id: number
-  Type: string | MediaType
-  Title: string
-  Genres: string
-  Description: string
-  Image: string
-  Fav: boolean
-  Viewed: boolean
+  id: number
+  type: string | MediaType
+  title: string
+  genres: string
+  description: string
+  image: string
+  fav: boolean
+  viewed: boolean
 }
 
 export interface Media extends MediaResume {
-  Year: number
-  FirstAir: number
-  Seasons: number
-  Caps: number
-  Rating: number
-  Runtime: number
+  year: number
+  firstAir: number
+  seasons: number
+  caps: number
+  rating: number
+  runtime: number
 }
 
 export enum MediaType {

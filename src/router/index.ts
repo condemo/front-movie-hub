@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainView from '../views/MainView.vue'
+import MediaDetail from '@/views/MediaDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,6 +10,11 @@ const router = createRouter({
       name: 'home',
       component: MainView,
     },
+    {
+      path: '/resume',
+      name: 'media_resume',
+      component: MediaDetail,
+    }
     // {
     //   path: '/about',
     //   name: 'about',
