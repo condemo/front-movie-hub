@@ -12,7 +12,7 @@ const { mediaList, loading } = storeToRefs(mediaStore)
 <template>
   <div>
     <LoadingSpinner v-if="loading" />
-    <div v-else class="flex flex-col space-y-1">
+    <div v-else class="flex flex-col space-y-1 pb-20">
       <MediaCard v-for="media in mediaList" :key="media.id" :media="media" />
     </div>
   </div>

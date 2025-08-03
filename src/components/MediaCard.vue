@@ -21,7 +21,7 @@
               clip-rule="evenodd" />
           </svg>
         </button>
-        <button class="btn btn-primary" @click="checkMedia">
+        <button class="btn btn-primary">
           <svg v-if="!media.viewed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -43,12 +43,7 @@
 import { type MediaResume } from '@/types/media';
 import type { PropType } from 'vue';
 
-const props = defineProps({
+defineProps({
   media: { type: Object as PropType<MediaResume>, required: true }
 })
-
-const checkMedia = () => {
-  console.log(props.media)
-}
-
 </script>
