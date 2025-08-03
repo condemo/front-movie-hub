@@ -4,7 +4,8 @@ export type MediaResume = {
   title: string
   genres: string
   description: string
-  image: string
+  thumbnail: string
+  rating: number
   fav: boolean
   viewed: boolean
 }
@@ -14,8 +15,8 @@ export interface Media extends MediaResume {
   firstAir: number
   seasons: number
   caps: number
-  rating: number
   runtime: number
+  image: string
 }
 
 export enum MediaType {
