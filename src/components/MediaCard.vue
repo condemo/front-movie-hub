@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-side bg-base-100 shadow-sm h-40 max-w-full">
+  <div class="card card-side bg-base-100 shadow-sm h-40 max-w-full border-2 border-secondary">
     <figure class="w-1/3">
       <img :src="media.thumbnail" alt="Movie" />
     </figure>
@@ -10,6 +10,11 @@
           <span class="font-bold text-xl text-error">{{ (Number(media.rating) / 10).toFixed(1) }}</span>
         </div>
         <p class="max-w-56 truncate">{{ media.description }}</p>
+        <p class="text-secondary">{{
+          media.type === MediaType.Movie
+            ? "Película"
+            : "Serie"
+        }}</p>
       </router-link>
       <div class="card-actions justify-end">
         <button class="btn btn-primary w-14">
@@ -43,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { type MediaResume } from '@/types/media';
+import { MediaType, type MediaResume } from '@/types/media';
 import type { PropType } from 'vue';
 
 defineProps({
