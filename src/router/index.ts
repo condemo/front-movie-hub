@@ -11,7 +11,7 @@ const router = createRouter({
       component: MainView,
     },
     {
-      path: '/resume',
+      path: '/resume/:id',
       name: 'media_resume',
       component: MediaDetail,
     }

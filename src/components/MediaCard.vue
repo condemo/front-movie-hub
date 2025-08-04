@@ -4,7 +4,7 @@
       <img :src="media.thumbnail" alt="Movie" />
     </figure>
     <div class="card-body flex">
-      <router-link to="/resume">
+      <router-link :to="'/resume/' + media.id">
         <div class="flex flex-row justify-between">
           <h2 class="card-title">{{ media.title }}</h2>
           <span class="font-bold text-xl text-error">{{ (Number(media.rating) / 10).toFixed(1) }}</span>
