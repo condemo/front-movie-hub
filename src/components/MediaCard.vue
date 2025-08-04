@@ -7,7 +7,7 @@
       <router-link to="/resume">
         <div class="flex flex-row justify-between">
           <h2 class="card-title">{{ media.title }}</h2>
-          <span class="font-bold text-xl text-error">{{ Number(media.rating).toFixed(2) / 10 }}</span>
+          <span class="font-bold text-xl text-error">{{ (Number(media.rating) / 10).toFixed(1) }}</span>
         </div>
         <p class="max-w-56 truncate">{{ media.description }}</p>
       </router-link>
