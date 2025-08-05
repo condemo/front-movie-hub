@@ -20,6 +20,6 @@ export interface Media extends MediaResume {
 }
 
 export enum MediaType {
-  Movie = "movie",
-  Series = "series"
+  Movie = 'movie',
+  Series = 'series',
 }

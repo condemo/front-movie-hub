@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import MediaCard from '@/components/MediaCard.vue';
-import { useMediaStore } from '@/store/media';
-import { storeToRefs } from 'pinia';
-import LoadingSpinner from '@/components/elements/LoadingSpinner.vue';
+import MediaCard from '@/components/MediaCard.vue'
+import { useMediaStore } from '@/store/media'
+import { storeToRefs } from 'pinia'
+import LoadingSpinner from '@/components/elements/LoadingSpinner.vue'
 
 const mediaStore = useMediaStore()
 const { mediaList, loading } = storeToRefs(mediaStore)
-
 </script>
 
 <template>

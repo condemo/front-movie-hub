@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PWAReload from './components/PWAReload.vue'
-import NavMenu from './components/NavMenu.vue';
+import NavMenu from './components/NavMenu.vue'
 </script>
 
 <template>

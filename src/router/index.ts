@@ -14,7 +14,7 @@ const router = createRouter({
       path: '/resume/:id',
       name: 'media_resume',
       component: MediaDetail,
-    }
+    },
     // {
     //   path: '/about',
     //   name: 'about',
