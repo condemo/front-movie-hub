@@ -6,7 +6,7 @@ import NavMenu from './components/NavMenu.vue'
 <template>
   <PWAReload />
   <div id="main-container" class="flex flex-col mx-auto text-center h-screen px-1">
-    <router-view class="my-2" />
+    <router-view class="my-2 pb-20" />
     <NavMenu />
   </div>
 </template>
