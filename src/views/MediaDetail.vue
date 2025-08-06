@@ -36,6 +36,7 @@ onMounted(async () => {
       <div class="text-3xl" v-if="media.type === MediaType.Series">
         Temporadas: {{ media.seasons }} | Capítulos: {{ media.caps }}
       </div>
+      <div class="divider text-xl w-3/4 mx-auto">Géneros</div>
       <p class="text-2xl font-bold text-secondary"> {{ media.genres }}</p>
       <div class="divider"></div>
       <p class="text-2xl mt-2" v-if="media.description">Sinopsis: {{ media.description }}</p>
