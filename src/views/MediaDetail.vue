@@ -6,15 +6,20 @@ import { MediaType, type Media } from '@/types/media'
 import { useFetch } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useMediaStore } from '@/store/media'
 
+const mediaStore = useMediaStore()
 const route = useRoute()
 const id = route.params.id
 const media = ref<Media | null>(null)
 const isImgLoaded = ref<boolean>(false)
 
 const mediaUpdate = async () => {
-  const { data } = await useFetch('http://192.168.3.54:5000/movie').put(media).json()
-  console.log(data.value)
+  const { error } = await useFetch('http://192.168.3.54:5000/movie').put(media)
+  if (!error.value) {
+    // PERF: buscar forma más eficiente de actualizar la mediaList global de la store
+    mediaStore.mediaFetch()
+  }
 }
 
 onMounted(async () => {
