@@ -46,8 +46,8 @@ onMounted(async () => {
       <p class="text-2xl mt-2" v-if="media.description">Sinopsis: {{ media.description }}</p>
     </div>
     <div class="flex flex-row justify-evenly mt-10">
-      <FavButton :fav="media.fav" class="w-16 h-16" @click="media.fav = !media.fav" />
-      <ViewedButton :viewed="media.viewed" class="w-16 h-16" @click="media.viewed = !media.viewed" />
+      <FavButton :fav="media.fav || false" class="w-16 h-16" @click="media.fav = !media.fav" />
+      <ViewedButton :viewed="media.viewed || false" class="w-16 h-16" @click="media.viewed = !media.viewed" />
     </div>
   </div>
 </template>
