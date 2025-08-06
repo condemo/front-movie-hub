@@ -6,13 +6,22 @@ import LoadingSpinner from '@/components/elements/LoadingSpinner.vue'
 
 const mediaStore = useMediaStore()
 const { mediaList, loading } = storeToRefs(mediaStore)
+
+const swapMediaViewed = (index: number) => {
+  mediaList.value[index].viewed = !mediaList.value[index].viewed
+}
+
+const swapMediaFav = (index: number) => {
+  mediaList.value[index].fav = !mediaList.value[index].fav
+}
 </script>
 
 <template>
   <div>
     <LoadingSpinner v-if="loading" />
     <div v-else class="flex flex-col space-y-1">
-      <MediaCard v-for="media in mediaList" :key="media.id" :media="media" />
+      <MediaCard v-for="(media, i) in mediaList" :key="media.id" :media="media" :index="i"
+        @swap-media-viewed="swapMediaViewed" @swap-media-fav="swapMediaFav" />
     </div>
   </div>
 </template>

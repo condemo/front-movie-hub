@@ -18,7 +18,8 @@
       </router-link>
       <div class="card-actions justify-end">
         <button class="btn w-14" :class="media.fav === true
-          ? 'btn-success' : 'btn-neutral'">
+          ? 'btn-success' : 'btn-neutral'
+          " @click="$emit('swap-media-fav', index)">
           <svg v-if="!media.fav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-14 h-14">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -33,7 +34,7 @@
         <button class="btn w-14" :class="media.viewed === true
           ? 'btn-success'
           : 'btn-neutral'
-          ">
+          " @click="$emit('swap-media-viewed', index)">
           <svg v-if="!media.viewed" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="h-14 w-14">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +58,7 @@ import type { PropType } from 'vue'
 
 defineProps({
   media: { type: Object as PropType<MediaResume>, required: true },
+  index: { type: Number, required: true }
 })
-
 
 </script>
