@@ -4,7 +4,7 @@ import FavButton from '@/components/elements/FavButton.vue'
 import ViewedButton from '@/components/elements/ViewedButton.vue'
 import { MediaType, type Media } from '@/types/media'
 import { useFetch } from '@vueuse/core'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -12,12 +12,19 @@ const id = route.params.id
 const media = ref<Media | null>(null)
 const isImgLoaded = ref<boolean>(false)
 
+const mediaUpdate = async () => {
+  const { data } = await useFetch('http://192.168.3.54:5000/movie').put(media).json()
+  console.log(data.value)
+}
+
 onMounted(async () => {
   const { data } = await useFetch<Media>('http://192.168.3.54:5000/movie/' + id).json()
   media.value = data.value as Media
+
+  watch(() => media.value?.fav, mediaUpdate)
+  watch(() => media.value?.viewed, mediaUpdate)
 })
 
-// TODO: implementar cambios en el server
 </script>
 
 <template>
