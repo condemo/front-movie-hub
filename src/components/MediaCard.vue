@@ -17,8 +17,8 @@
           ">{{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}</p>
       </router-link>
       <div class="card-actions justify-end">
-        <FavButton :fav="media.fav" @click="$emit('swap-media-fav', index)" />
-        <ViewedButton :viewed="media.viewed" @click="$emit('swap-media-viewed', index)" />
+        <FavButton :fav="media.fav || false" @click="$emit('swap-media-fav', index)" />
+        <ViewedButton :viewed="media.viewed || false" @click="$emit('swap-media-viewed', index)" />
       </div>
     </div>
   </div>
