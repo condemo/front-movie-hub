@@ -6,8 +6,14 @@ import ViewedView from '@/views/ViewedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior: () => {
-    return { top: 0 }
+  scrollBehavior: (to, _, savedPosition) => {
+    if (to.name === 'favs' || to.name === 'viewed') {
+      return { top: 0 }
+    } else {
+      if (savedPosition) {
+        return savedPosition
+      }
+    }
   },
   routes: [
     {
