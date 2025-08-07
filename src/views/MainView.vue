@@ -24,14 +24,8 @@ const swapMediaFav = (index: number) => {
   <div>
     <LoadingSpinner v-if="loading" />
     <div v-else class="flex flex-col space-y-1">
-      <MediaCard
-        v-for="(media, i) in mediaList"
-        :key="media.id"
-        :media="media"
-        :index="i"
-        @swap-media-viewed="swapMediaViewed"
-        @swap-media-fav="swapMediaFav"
-      />
+      <MediaCard v-for="(media, i) in mediaList" :key="media.id" :media="media" :index="i"
+        @swap-media-viewed="swapMediaViewed" @swap-media-fav="swapMediaFav" />
     </div>
   </div>
 </template>

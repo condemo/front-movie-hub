@@ -3,6 +3,10 @@ import MainView from '../views/MainView.vue'
 import MediaDetail from '@/views/MediaDetail.vue'
 import FavsView from '@/views/FavsView.vue'
 import ViewedView from '@/views/ViewedView.vue'
+import { useCoreStore } from '@/store/core'
+import { storeToRefs } from 'pinia'
+import { MenuButton } from '@/types/core'
+import type { RefSymbol } from '@vue/reactivity'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +49,21 @@ const router = createRouter({
     //   component: () => import('../views/AboutView.vue'),
     // },
   ],
+})
+
+router.afterEach((to) => {
+  const coreStore = useCoreStore()
+  const { currentSelectedBtn } = storeToRefs(coreStore)
+
+  if (to.name === 'home') {
+    currentSelectedBtn.value = MenuButton.home
+  } else if (to.name === 'favs') {
+    currentSelectedBtn.value = MenuButton.fav
+  } else if (to.name === 'viewed') {
+    currentSelectedBtn.value = MenuButton.viewed
+  } else {
+    currentSelectedBtn.value = MenuButton.other
+  }
 })
 
 export default router
