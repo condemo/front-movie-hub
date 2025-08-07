@@ -11,10 +11,12 @@
             (Number(media.rating) / 10).toFixed(1)
           }}</span>
         </div>
-        <p class="font-bold text-base" :class="media.type === MediaType.Movie
-          ? 'text-accent'
-          : 'text-info'
-          ">{{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}</p>
+        <p
+          class="font-bold text-base"
+          :class="media.type === MediaType.Movie ? 'text-accent' : 'text-info'"
+        >
+          {{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}
+        </p>
       </router-link>
       <div class="card-actions justify-end">
         <FavButton :fav="media.fav || false" @click="$emit('swap-media-fav', index)" />
@@ -32,7 +34,6 @@ import ViewedButton from './elements/ViewedButton.vue'
 
 defineProps({
   media: { type: Object as PropType<MediaResume>, required: true },
-  index: { type: Number, required: true }
+  index: { type: Number, required: true },
 })
-
 </script>
