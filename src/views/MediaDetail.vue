@@ -17,8 +17,9 @@ const isImgLoaded = ref<boolean>(false)
 const mediaUpdate = async () => {
   const { error } = await useFetch('http://192.168.3.54:5000/movie').put(media)
   if (!error.value) {
-    // PERF: buscar forma más eficiente de actualizar la mediaList global de la store
-    mediaStore.mediaFetch()
+    if (media.value) {
+      mediaStore.updateMediaResume(media.value.id, { fav: media.value.fav, viewed: media.value.viewed })
+    }
   }
 }
 

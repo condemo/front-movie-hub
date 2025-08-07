@@ -17,10 +17,20 @@ export const useMediaStore = defineStore('media', () => {
   }
   mediaFetch()
 
+  const updateMediaResume = async (id: number, { fav = false, viewed = false }: { fav?: boolean; viewed?: boolean }) => {
+    mediaList.value.forEach((value, index, array) => {
+      if (value.id === id) {
+        array[index].fav = fav
+        array[index].viewed = viewed
+      }
+    })
+  }
+
   return {
     mediaList,
     loading,
     err,
     mediaFetch,
+    updateMediaResume,
   }
 })
