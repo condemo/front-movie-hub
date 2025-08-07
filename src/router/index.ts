@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainView from '../views/MainView.vue'
 import MediaDetail from '@/views/MediaDetail.vue'
+import FavsView from '@/views/FavsView.vue'
+import ViewedView from '@/views/ViewedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior: () => {
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
@@ -14,6 +19,16 @@ const router = createRouter({
       path: '/resume/:id',
       name: 'media_resume',
       component: MediaDetail,
+    },
+    {
+      path: '/fav',
+      name: 'favs',
+      component: FavsView,
+    },
+    {
+      path: '/viewed',
+      name: 'viewed',
+      component: ViewedView,
     },
     // {
     //   path: '/about',
