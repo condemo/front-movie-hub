@@ -17,11 +17,25 @@ export const useMediaStore = defineStore('media', () => {
   }
   mediaFetch()
 
-  const updateMediaResume = async (id: number, { fav = false, viewed = false }: { fav?: boolean; viewed?: boolean }) => {
+  const updateMediaResume = (id: number, { fav = false, viewed = false }: { fav?: boolean; viewed?: boolean }) => {
     mediaList.value.forEach((value, index, array) => {
       if (value.id === id) {
         array[index].fav = fav
         array[index].viewed = viewed
+      }
+    })
+  }
+
+  const updateMediaBooleans = async (id: number, { fav = false, viewed = false }: { fav?: boolean, viewed?: boolean }) => {
+    const { data, error } = await useFetch("http://192.168.3.54:5000/movie/resume").put({ id: id, fav: fav, viewed: viewed }).json()
+    if (error.value) {
+      // TODO: gestionar errores
+      console.log("error")
+    }
+
+    mediaList.value.forEach((value, index, array) => {
+      if (value.id === id) {
+        array[index] = data.value as MediaResume
       }
     })
   }
@@ -32,5 +46,6 @@ export const useMediaStore = defineStore('media', () => {
     err,
     mediaFetch,
     updateMediaResume,
+    updateMediaBooleans,
   }
 })

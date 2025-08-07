@@ -9,10 +9,14 @@ const { mediaList, loading } = storeToRefs(mediaStore)
 
 const swapMediaViewed = (index: number) => {
   mediaList.value[index].viewed = !mediaList.value[index].viewed
+  var md = mediaList.value[index]
+  mediaStore.updateMediaBooleans(md.id, { fav: md.fav, viewed: md.viewed })
 }
 
 const swapMediaFav = (index: number) => {
   mediaList.value[index].fav = !mediaList.value[index].fav
+  var md = mediaList.value[index]
+  mediaStore.updateMediaBooleans(md.id, { fav: md.fav, viewed: md.viewed })
 }
 </script>
 
