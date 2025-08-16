@@ -6,7 +6,6 @@ import ViewedView from '@/views/ViewedView.vue'
 import { useCoreStore } from '@/store/core'
 import { storeToRefs } from 'pinia'
 import { MenuButton } from '@/types/core'
-import type { RefSymbol } from '@vue/reactivity'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
