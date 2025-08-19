@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useMediaStore } from '@/store/media'
+import { storeToRefs } from 'pinia'
+import MediaCard from '@/components/MediaCard.vue'
 
+const mediaStore = useMediaStore()
+const { viewedMedia } = storeToRefs(mediaStore)
 </script>
-
 <template>
-  <div>
-    <h1 class="text-3xl">Viewed View</h1>
+  <div class="felx flex-col space-y-1">
+    <MediaCard v-for="(media, i) in viewedMedia" :key="media.id" :media="media" :index="i" />
   </div>
 </template>

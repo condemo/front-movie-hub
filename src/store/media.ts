@@ -1,7 +1,7 @@
 import type { MediaResume } from '@/types/media'
 import { useFetch } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { ref, type Ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 
 export const useMediaStore = defineStore('media', () => {
   const mediaList: Ref<MediaResume[]> = ref([])
@@ -10,9 +10,22 @@ export const useMediaStore = defineStore('media', () => {
   const offset: Ref<number> = ref(0)
   const fetching: Ref<boolean> = ref(false)
 
-  const mediaFetch = async () => {
+  const favMedia = computed(() => {
+    return mediaList.value.filter((value) => {
+      return value.fav === true
+    })
+  })
+  const viewedMedia = computed(() => {
+    return mediaList.value.filter((value) => {
+      return value.viewed === true
+    })
+  })
+
+  const mediaFetch = async (limit: string = '', type: string = '') => {
     loading.value = true
-    const { error, data } = await useFetch('http://192.168.3.54:5000/movie').json()
+    const { error, data } = await useFetch(
+      `http://192.168.3.54:5000/movie?type=${type}&limit=${limit}`,
+    ).json()
     err.value = error.value
     mediaList.value = data.value as MediaResume[]
     offset.value = offset.value + 50
@@ -53,12 +66,14 @@ export const useMediaStore = defineStore('media', () => {
 
   const getMoreMedia = async () => {
     fetching.value = true
-    const { data, error } = await useFetch(`http://192.168.3.54:5000/movie?offset=${offset.value}`).json()
+    const { data, error } = await useFetch(
+      `http://192.168.3.54:5000/movie?offset=${offset.value}`,
+    ).json()
     if (error.value) {
       console.log(error.value)
     } else {
       offset.value = offset.value + 50
-      mediaList.value.push(...data.value as MediaResume[])
+      mediaList.value.push(...(data.value as MediaResume[]))
     }
     fetching.value = false
   }
@@ -69,6 +84,8 @@ export const useMediaStore = defineStore('media', () => {
     err,
     fetching,
     mediaFetch,
+    favMedia,
+    viewedMedia,
     updateMediaResume,
     updateMediaBooleans,
     getMoreMedia,
