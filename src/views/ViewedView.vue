@@ -7,7 +7,10 @@ const mediaStore = useMediaStore()
 const { viewedMedia } = storeToRefs(mediaStore)
 </script>
 <template>
-  <div class="felx flex-col space-y-1">
-    <MediaCard v-for="(media, i) in viewedMedia" :key="media.id" :media="media" :index="i" />
+  <div class="flex flex-col space-y-1">
+    <div v-if="viewedMedia.length > 0">
+      <MediaCard v-for="(media, i) in viewedMedia" :key="media.id" :media="media" :index="i" />
+    </div>
+    <div v-else class="text-2xl font-bold text-primary">No hay vistas todavía!!</div>
   </div>
 </template>

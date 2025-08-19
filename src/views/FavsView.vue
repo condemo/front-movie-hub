@@ -9,6 +9,9 @@ const { favMedia } = storeToRefs(mediaStore)
 
 <template>
   <div class="flex flex-col space-y-1">
-    <MediaCard v-for="(media, i) in favMedia" :key="media.id" :media="media" :index="i" />
+    <div v-if="favMedia.length > 0">
+      <MediaCard v-for="(media, i) in favMedia" :key="media.id" :media="media" :index="i" />
+    </div>
+    <div v-else class="text-2xl font-bold text-primary">No hay favoritas todavía!!</div>
   </div>
 </template>
