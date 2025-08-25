@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMediaStore } from '@/store/media'
+import { useMediaStore } from '@/stores/media'
 import { storeToRefs } from 'pinia'
 import MediaCard from '@/components/MediaCard.vue'
 

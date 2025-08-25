@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MediaCard from '@/components/MediaCard.vue'
-import { useMediaStore } from '@/store/media'
+import { useMediaStore } from '@/stores/media'
 import { storeToRefs } from 'pinia'
 import LoadingSpinner from '@/components/elements/LoadingSpinner.vue'
 import { onMounted, onUnmounted, useTemplateRef } from 'vue'

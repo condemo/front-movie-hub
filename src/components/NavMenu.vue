@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCoreStore } from '@/store/core';
+import { useCoreStore } from '@/stores/core';
 import { MenuButton } from '@/types/core';
 import { storeToRefs } from 'pinia';
 

@@ -3,7 +3,7 @@ import MainView from '../views/MainView.vue'
 import MediaDetail from '@/views/MediaDetail.vue'
 import FavsView from '@/views/FavsView.vue'
 import ViewedView from '@/views/ViewedView.vue'
-import { useCoreStore } from '@/store/core'
+import { useCoreStore } from '@/stores/core'
 import { storeToRefs } from 'pinia'
 import { MenuButton } from '@/types/core'
 

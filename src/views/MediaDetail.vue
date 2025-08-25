@@ -6,7 +6,7 @@ import { MediaType, type Media } from '@/types/media'
 import { useFetch } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useMediaStore } from '@/store/media'
+import { useMediaStore } from '@/stores/media'
 
 const mediaStore = useMediaStore()
 const route = useRoute()
