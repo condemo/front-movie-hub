@@ -9,9 +9,12 @@
           <h2 class="card-title">{{ media.title }}</h2>
           <span class="font-bold text-xl text-error">{{
             (Number(media.rating) / 10).toFixed(1)
-            }}</span>
+          }}</span>
         </div>
-        <p class="font-bold text-base" :class="media.type === MediaType.Movie ? 'text-accent' : 'text-info'">
+        <p
+          class="font-bold text-base"
+          :class="media.type === MediaType.Movie ? 'text-accent' : 'text-info'"
+        >
           {{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}
         </p>
       </router-link>

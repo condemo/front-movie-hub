@@ -23,3 +23,8 @@ export enum MediaType {
   Movie = 'movie',
   Series = 'series',
 }
+
+export enum MediaFilter {
+  None = '',
+  Rating = 'rating',
+}

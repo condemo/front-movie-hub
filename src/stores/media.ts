@@ -1,4 +1,5 @@
-import type { MediaResume } from '@/types/media'
+import { MediaFilter, type MediaResume } from '@/types/media'
+
 import { useFetch } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { computed, ref, type Ref } from 'vue'
@@ -8,6 +9,7 @@ export const useMediaStore = defineStore('media', () => {
   const loading: Ref<boolean> = ref(false)
   const err: Ref<Error | null> = ref(null)
   const offset: Ref<number> = ref(0)
+  const order: Ref<MediaFilter> = ref(MediaFilter.None)
   const fetching: Ref<boolean> = ref(false)
 
   const favMedia = computed(() => {
@@ -24,7 +26,7 @@ export const useMediaStore = defineStore('media', () => {
   const mediaFetch = async (limit: string = '', type: string = '') => {
     loading.value = true
     const { error, data } = await useFetch(
-      `http://192.168.3.54:5000/movie?type=${type}&limit=${limit}`,
+      `http://192.168.3.54:5000/movie?type=${type}&limit=${limit}&order=${order.value}`,
     ).json()
     err.value = error.value
     mediaList.value = data.value as MediaResume[]
@@ -67,7 +69,7 @@ export const useMediaStore = defineStore('media', () => {
   const getMoreMedia = async () => {
     fetching.value = true
     const { data, error } = await useFetch(
-      `http://192.168.3.54:5000/movie?offset=${offset.value}`,
+      `http://192.168.3.54:5000/movie?offset=${offset.value}&limit=50&order=${order.value}`,
     ).json()
     if (error.value) {
       console.log(error.value)
@@ -78,14 +80,21 @@ export const useMediaStore = defineStore('media', () => {
     fetching.value = false
   }
 
+  const mediaOrderBy = async () => {
+    await mediaFetch()
+    offset.value = 50
+  }
+
   return {
     mediaList,
     loading,
     err,
     fetching,
+    order,
     mediaFetch,
     favMedia,
     viewedMedia,
+    mediaOrderBy,
     updateMediaResume,
     updateMediaBooleans,
     getMoreMedia,
