@@ -9,19 +9,27 @@ import { ref } from 'vue'
 import { watch } from 'vue'
 
 const mediaStore = useMediaStore()
-const { mediaList, loading, fetching, order } = storeToRefs(mediaStore)
+const { mediaList, loading, fetching, order, mediaType, offset } = storeToRefs(mediaStore)
 const scrollComponent = useTemplateRef('scrollComponent')
 
 const orderOptions = ref([
   { text: 'Sin Orden', value: MediaFilter.None },
   { text: 'Puntuación', value: MediaFilter.Rating },
 ])
-watch(
-  () => order.value,
-  () => {
-    mediaStore.mediaOrderBy()
-  },
-)
+
+const filterOptions = ref([
+  { text: 'Ambas', value: 'Both' },
+  { text: 'Películas', value: 'Movie' },
+  { text: 'Series', value: 'Serie' },
+])
+
+const updateData = async () => {
+  await mediaStore.mediaFetch()
+  offset.value = 50
+}
+
+watch(() => order.value, updateData)
+watch(() => mediaType.value, updateData)
 
 const swapMediaViewed = (index: number) => {
   mediaList.value[index].viewed = !mediaList.value[index].viewed
@@ -59,9 +67,14 @@ const handleScroll = async () => {
   <div>
     <LoadingSpinner v-if="loading" />
     <div v-else class="flex flex-col">
-      <div class="mx-auto">
+      <div class="flex flex-row mx-auto">
         <select class="select select-secondary text-xl m-2" v-model="order">
           <option v-for="(option, i) in orderOptions" :value="option.value" :key="i">
+            {{ option.text }}
+          </option>
+        </select>
+        <select class="select select-secondary text-xl m-2" v-model="mediaType">
+          <option v-for="(option, i) in filterOptions" :value="option.value" :key="i">
             {{ option.text }}
           </option>
         </select>
