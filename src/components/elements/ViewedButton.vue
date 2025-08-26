@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-  <button class="btn w-14" :class="viewed === true ? 'btn-success' : 'btn-neutral'">
+  <button class="btn btn-square" :class="viewed === true ? 'btn-success' : 'btn-neutral'">
     <svg
       v-if="!viewed"
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,6 @@ defineProps({
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="h-14 w-14"
     >
       <path
         stroke-linecap="round"
