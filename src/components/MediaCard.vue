@@ -3,10 +3,12 @@
     <figure class="w-1/3">
       <img :src="media.thumbnail" alt="Movie" />
     </figure>
-    <div class="card-body flex">
+    <div class="card-body flex space-y-0">
       <router-link :to="'/resume/' + media.id">
         <div class="flex flex-row justify-between">
-          <h2 class="card-title">{{ media.title }}</h2>
+          <h2 class="card-title truncate max-h-4 max-w-44 mx-auto">
+            {{ media.title }}
+          </h2>
           <span class="font-bold text-xl text-error">{{
             (Number(media.rating) / 10).toFixed(1)
           }}</span>
@@ -17,6 +19,7 @@
         >
           {{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}
         </p>
+        <p class="font-bold text-secondary">{{ media.genres }}</p>
       </router-link>
       <div class="card-actions justify-end mx-auto w-1/2 space-x-3 *:w-10">
         <FavButton :fav="media.fav || false" @click="$emit('swap-media-fav', index)" />
