@@ -6,6 +6,8 @@ import ViewedView from '@/views/ViewedView.vue'
 import { useCoreStore } from '@/stores/core'
 import { storeToRefs } from 'pinia'
 import { MenuButton } from '@/types/core'
+import { useMediaStore } from '@/stores/media'
+import { MediaFilter } from '@/types/media'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +64,19 @@ router.afterEach((to) => {
     currentSelectedBtn.value = MenuButton.viewed
   } else {
     currentSelectedBtn.value = MenuButton.other
+  }
+})
+
+router.beforeEach((to) => {
+  const mediaStore = useMediaStore()
+  const { filter } = storeToRefs(mediaStore)
+
+  if (to.name === 'home') {
+    filter.value = MediaFilter.None
+  } else if (to.name === 'favs') {
+    filter.value = MediaFilter.Fav
+  } else if (to.name === 'viewed') {
+    filter.value = MediaFilter.Viewed
   }
 })
 

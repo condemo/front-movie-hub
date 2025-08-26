@@ -4,24 +4,24 @@ import { storeToRefs } from 'pinia'
 import MediaCard from '@/components/MediaCard.vue'
 
 const mediaStore = useMediaStore()
-const { favMedia } = storeToRefs(mediaStore)
+const { mediaList } = storeToRefs(mediaStore)
 
 const swapMediaViewed = (index: number) => {
-  const md = favMedia.value[index]
+  const md = mediaList.value[index]
   mediaStore.updateMediaBooleans(md.id, { fav: md.fav, viewed: !md.viewed })
 }
 
 const swapMediaFav = (index: number) => {
-  const md = favMedia.value[index]
+  const md = mediaList.value[index]
   mediaStore.updateMediaBooleans(md.id, { fav: !md.fav, viewed: md.viewed })
 }
 </script>
 
 <template>
   <div class="flex flex-col space-y-1">
-    <div v-if="favMedia.length > 0">
+    <div v-if="mediaList.length > 0">
       <MediaCard
-        v-for="(media, i) in favMedia"
+        v-for="(media, i) in mediaList"
         :key="media.id"
         :media="media"
         :index="i"

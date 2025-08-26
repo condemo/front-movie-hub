@@ -24,7 +24,13 @@ export enum MediaType {
   Series = 'series',
 }
 
-export enum MediaFilter {
+export enum MediaOrder {
   None = '',
   Rating = 'rating',
+}
+
+export enum MediaFilter {
+  None = '',
+  Fav = 'fav',
+  Viewed = 'viewed',
 }

@@ -3,7 +3,7 @@ import MediaCard from '@/components/MediaCard.vue'
 import { useMediaStore } from '@/stores/media'
 import { storeToRefs } from 'pinia'
 import LoadingSpinner from '@/components/elements/LoadingSpinner.vue'
-import { MediaFilter } from '@/types/media'
+import { MediaOrder } from '@/types/media'
 import { onMounted, onUnmounted, useTemplateRef } from 'vue'
 import { ref } from 'vue'
 import { watch } from 'vue'
@@ -13,8 +13,8 @@ const { mediaList, loading, fetching, order, mediaType, offset } = storeToRefs(m
 const scrollComponent = useTemplateRef('scrollComponent')
 
 const orderOptions = ref([
-  { text: 'Sin Orden', value: MediaFilter.None },
-  { text: 'Puntuación', value: MediaFilter.Rating },
+  { text: 'Sin Orden', value: MediaOrder.None },
+  { text: 'Puntuación', value: MediaOrder.Rating },
 ])
 
 const filterOptions = ref([
