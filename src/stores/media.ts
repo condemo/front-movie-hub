@@ -36,7 +36,7 @@ export const useMediaStore = defineStore('media', () => {
   const mediaFetch = async (limit: string = '') => {
     loading.value = true
     const { error, data, response } = await useFetch(
-      `http://192.168.3.54:5000/movie?type=${mediaType.value}&filter=${filter.value}&limit=${limit}&order=${order.value}`,
+      `${import.meta.env.VITE_BACK_URL}/movie?type=${mediaType.value}&filter=${filter.value}&limit=${limit}&order=${order.value}`,
     ).json()
     if (response.value?.status === 404) {
       mediaList.value = []
@@ -66,7 +66,7 @@ export const useMediaStore = defineStore('media', () => {
     id: number,
     { fav = false, viewed = false }: { fav?: boolean; viewed?: boolean },
   ) => {
-    const { data, error } = await useFetch('http://192.168.3.54:5000/movie/resume')
+    const { data, error } = await useFetch(`${import.meta.env.VITE_BACK_URL}/movie/resume`)
       .put({ id: id, fav: fav, viewed: viewed })
       .json()
     if (error.value) {
@@ -84,7 +84,7 @@ export const useMediaStore = defineStore('media', () => {
   const getMoreMedia = async () => {
     fetching.value = true
     const { data, error } = await useFetch(
-      `http://192.168.3.54:5000/movie?type=${mediaType.value}&offset=${offset.value}&limit=50&order=${order.value}`,
+      `${import.meta.env.VITE_BACK_URL}/movie?type=${mediaType.value}&offset=${offset.value}&limit=50&order=${order.value}`,
     ).json()
     if (error.value) {
       console.log(error.value)
