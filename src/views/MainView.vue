@@ -80,14 +80,8 @@ const handleScroll = async () => {
         </select>
       </div>
       <div ref="scrollComponent" class="flex flex-col space-y-1">
-        <MediaCard
-          v-for="(media, i) in mediaList"
-          :key="media.id"
-          :media="media"
-          :index="i"
-          @swap-media-viewed="swapMediaViewed"
-          @swap-media-fav="swapMediaFav"
-        />
+        <MediaCard v-for="(media, i) in mediaList" :key="media.id" :media="media" :index="i"
+          @swap-media-viewed="swapMediaViewed" @swap-media-fav="swapMediaFav" />
       </div>
     </div>
   </div>
