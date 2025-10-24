@@ -8,6 +8,7 @@ export type MediaResume = {
   rating: number
   fav: boolean
   viewed: boolean
+  recomended: boolean
 }
 
 export interface Media extends MediaResume {
@@ -33,4 +34,5 @@ export enum MediaFilter {
   None = '',
   Fav = 'fav',
   Viewed = 'viewed',
+  Recomended = 'recomended'
 }
