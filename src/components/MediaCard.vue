@@ -16,7 +16,7 @@
         <p class="font-bold text-base" :class="media.type === MediaType.Movie ? 'text-accent' : 'text-info'">
           {{ media.type === MediaType.Movie ? 'Película' : 'Serie' }}
         </p>
-        <p class="font-bold text-secondary">{{ media.genres }}</p>
+        <p class="font-bold text-secondary">{{ String(media.genres).substring(0, 30) }}</p>
         <div class="card-actions flex flex-row justify-evenly mx-auto w-full space-x-3 *:w-10">
           <FavButton :fav="media.fav || false" @click.stop="$emit('swap-media-fav', index)" />
           <ViewedButton :viewed="media.viewed || false" @click.stop="$emit('swap-media-viewed', index)" />

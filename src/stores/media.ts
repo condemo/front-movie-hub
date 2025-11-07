@@ -1,8 +1,8 @@
-import { MediaFilter, MediaOrder, MediaType, type MediaResume } from '@/types/media'
+import { MediaFilter, MediaOrder, type MediaResume } from '@/types/media'
 
 import { useFetch } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, ref, watch, type Ref } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
 export const useMediaStore = defineStore('media', () => {
   const mediaList: Ref<MediaResume[]> = ref([])
@@ -21,17 +21,6 @@ export const useMediaStore = defineStore('media', () => {
       offset.value = 50
     },
   )
-
-  // const favMedia = computed(() => {
-  //   return mediaList.value.filter((value) => {
-  //     return value.fav === true
-  //   })
-  // })
-  // const viewedMedia = computed(() => {
-  //   return mediaList.value.filter((value) => {
-  //     return value.viewed === true
-  //   })
-  // })
 
   const mediaFetch = async (limit: string = '') => {
     loading.value = true

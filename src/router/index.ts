@@ -8,6 +8,7 @@ import { storeToRefs } from 'pinia'
 import { MenuButton } from '@/types/core'
 import { useMediaStore } from '@/stores/media'
 import { MediaFilter } from '@/types/media'
+import RecomendedView from '@/views/RecomendedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,11 @@ const router = createRouter({
       name: 'viewed',
       component: ViewedView,
     },
+    {
+      path: '/recomended',
+      name: 'recomended',
+      component: RecomendedView,
+    },
     // {
     //   path: '/about',
     //   name: 'about',
@@ -62,6 +68,8 @@ router.afterEach((to) => {
     currentSelectedBtn.value = MenuButton.fav
   } else if (to.name === 'viewed') {
     currentSelectedBtn.value = MenuButton.viewed
+  } else if (to.name === 'recomended') {
+    currentSelectedBtn.value = MenuButton.recomended
   } else {
     currentSelectedBtn.value = MenuButton.other
   }
@@ -77,6 +85,8 @@ router.beforeEach((to) => {
     filter.value = MediaFilter.Fav
   } else if (to.name === 'viewed') {
     filter.value = MediaFilter.Viewed
+  } else if (to.name === 'recomended') {
+    filter.value = MediaFilter.Recomended
   }
 })
 
